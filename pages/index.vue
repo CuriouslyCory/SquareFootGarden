@@ -1,21 +1,95 @@
 <template>
-  <div class="container">
-    <h1>My Garden</h1>
-    <Garden />
+  <div>
+    <div class="container header">
+      <div class="row">
+        <div class="col-12">
+          <h1>My Gardens</h1>
+        </div>
+      </div>
+    </div>
+    <garden v-for="garden in gardens" :key="garden.id" :name="garden.name" :beds="garden.beds"/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  name: '',
+  props: {},
+  data () {
+    return {
+      gardens: [
+        {
+          id: 1,
+          name: 'West Garden',
+          beds: [
+            {
+              id: 'bed-1',
+              size: {x: 8, y: 2},
+              plots: [
+                {
+                  loc: {x: 1, y: 1},
+                  name: 'Lettuce Bib'
+                },
+                {
+                  loc: {x: 1, y: 2},
+                  name: 'Hot Pepper'
+                },
+                {
+                  loc: {x: 2, y: 1},
+                  name: 'Lettuce'
+                },
+                {
+                  loc: {x: 2, y: 2},
+                  name: 'Hot Pepper'
+                },
+                {
+                  loc: {x: 3, y: 2},
+                  name: 'Mustard'
+                },
+                {
+                  loc: {x: 4, y: 2},
+                  name: 'Celery'
+                },
+                {
+                  loc: {x: 5, y: 2},
+                  name: 'Beans'
+                },
+                {
+                  loc: {x: 6, y: 2},
+                  name: 'Beans'
+                },
+                {
+                  loc: {x: 3, y: 1},
+                  name: 'Radish'
+                },
+                {
+                  loc: {x: 4, y: 1},
+                  name: 'Turnip'
+                },
+                {
+                  loc: {x: 5, y: 1},
+                  name: 'Kale'
+                }
+              ]
+            },
+            {
+              id: 'bed-2',
+              size: {x: 8, y: 2},
+              plots: []
+            }
+          ]
+        }
+      ]
+    }
+  }
+})
 </script>
 
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
