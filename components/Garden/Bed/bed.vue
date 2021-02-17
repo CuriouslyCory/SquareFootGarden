@@ -14,7 +14,19 @@
     </div>
 </template>
 <script lang="ts">
-export default {
+import Vue, { PropOptions } from 'vue'
+
+interface Plot {
+    loc: PlotLocation,
+    name: String
+}
+
+interface PlotLocation{
+    x: Number,
+    y: Number
+}
+
+export default Vue.extend({
     props: {
         bedId: {
             type: String,
@@ -27,17 +39,16 @@ export default {
         plots: {
             type: Array,
             required: true
-        }
+        } as PropOptions<Plot[]>
     },
 
     methods: {
         cellVal(nx: Number, ny: Number): String {
-            console.log(this.plots[0]);
             let aPlot = this.plots.filter(content => content.loc.x == nx && content.loc.y == ny);
             return !!aPlot[0] ? aPlot[0].name : '';
         }
     }
-}
+})
 </script>
 <style lang="sass">
 .bed-wrapper
